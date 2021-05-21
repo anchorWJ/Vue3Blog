@@ -1,0 +1,22 @@
+{
+    "typeAcquisition": {
+        "exclude": [ "dotenv" ]
+    },
+
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "paths": {
+            "@c/*": ["./components/*"],
+            "@a/*": ["./assets/*"],
+            "@u/*": ["./use/*"],
+            "@r/*": ["./router/*"],
+            "@b/*": ["./blocks/*"],
+            "@v/*": ["./views/*"],
+            "@l/*": ["./layout/*"],
+            "@p/*": ["./plugins/*"],
+            "@vp/*": ["./view-provider/*"]
+        },
+        // "forceConsistentCasingInFileNames": false,
+    },
+    "exclude": ["node_modules"]
+}
