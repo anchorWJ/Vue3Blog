@@ -1,0 +1,14 @@
+[2021-05-28T12:30:18.322] [ERROR] app - { message: 'Authentication Error', status: 401 }
+[2021-05-28T12:30:39.771] [ERROR] app - { message: 'Authentication Error', status: 401 }
+[2021-05-28T12:31:26.254] [ERROR] app - { message: 'Authentication Error', status: 401 }
+[2021-05-28T12:32:37.490] [ERROR] app - { message: 'Authentication Error', status: 401 }
+[2021-05-28T12:33:13.880] [ERROR] app - { message: 'Authentication Error', status: 401 }
+[2021-05-28T12:47:56.075] [ERROR] app - { message: 'body-title must be string', status: 400 }
+[2021-05-28T12:48:13.133] [ERROR] app - {
+  message: 'body-type must belong Swift, AWS, Vue, Kotlin, Python, Others',
+  status: 400
+}
+[2021-05-28T12:48:25.652] [ERROR] app - {
+  message: 'body-type must belong Swift, AWS, Vue, Kotlin, Python, Others',
+  status: 400
+}

@@ -31,4 +31,7 @@ context.fail = function (reason, status = 500) {
   this.body = {msg: "failed", status, reason }
 }
 
+const model = require("../model")
+context.model = model
+
 module.exports = context

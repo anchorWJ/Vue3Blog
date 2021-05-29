@@ -1,0 +1,4 @@
+[2021-05-25T12:32:09.517] [ERROR] http - ::ffff:172.31.0.1 - - "GET / HTTP/1.1" 404 62 "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
+[2021-05-25T12:32:21.814] [ERROR] http - ::ffff:172.31.0.1 - - "GET /articles HTTP/1.1" 404 62 "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
+[2021-05-25T12:32:26.477] [ERROR] http - ::ffff:172.31.0.1 - - "GET /articles/id:200 HTTP/1.1" 404 62 "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
+[2021-05-25T12:32:33.000] [INFO] http - ::ffff:172.31.0.1 - - "GET /article/id:200 HTTP/1.1" 200 58 "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"

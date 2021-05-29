@@ -1,13 +1,24 @@
-const articles = require("../controllers/article")
+const article = require("../controllers/article")
+const jwt = require('koa-jwt')
+const config = require("../config")
 
 /**
  * @type {Custom.IRouter}
  */
 module.exports = router => {
-  router.prefix("/articles")
-  router.get("/", articles.index)
-  router.get("/:id", articles.show)
-  router.post("/", articles.create)
-  router.get("/:id", articles.update)
-  router.del("/:id", articles.destroy)
+  router.prefix("/article")
+
+  router.use(
+    jwt({
+      secret: config.SECRET_KEY.TOKEN
+    }).unless({
+      method: ["GET"]
+    })
+  )
+
+  router.get("/", article.index)
+  router.get("/:id", article.show)
+  router.post("/", article.create)
+  router.put("/:id", article.update)
+  router.del("/:id", article.destroy)
 }

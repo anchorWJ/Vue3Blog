@@ -1,0 +1,32 @@
+[2021-05-29T01:26:24.788] [ERROR] app - {
+  message: 'body-type must belong Swift, AWS, Vue, Kotlin, Python, Others',
+  status: 400
+}
+[2021-05-29T04:32:57.869] [ERROR] app - {
+  message: "Cannot read property 'validateAsync' of undefined",
+  status: 500
+}
+[2021-05-29T04:33:47.371] [ERROR] app - {
+  message: "Cannot read property 'validateAsync' of undefined",
+  status: 500
+}
+[2021-05-29T04:37:10.431] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-05-29T06:31:12.051] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-05-29T06:49:08.202] [ERROR] app - { message: 'Authentication Error', status: 401 }
+[2021-05-29T09:07:32.035] [ERROR] app - { message: 'schema.update is not a function', status: 500 }
+[2021-05-29T09:07:39.611] [ERROR] app - { message: 'schema.update is not a function', status: 500 }
+[2021-05-29T09:08:43.628] [ERROR] app - { message: 'schema.update is not a function', status: 500 }
+[2021-05-29T09:09:40.953] [ERROR] app - {
+  message: 'body-type must belong Swift, AWS, Vue, Kotlin, Python, Others',
+  status: 400
+}
+[2021-05-29T09:09:53.682] [ERROR] app - {
+  message: 'body-type must belong Swift, AWS, Vue, Kotlin, Python, Others',
+  status: 400
+}
+[2021-05-29T09:10:46.799] [ERROR] app - {
+  message: 'body-type must belong Swift, AWS, Vue, Kotlin, Python, Others',
+  status: 400
+}
+[2021-05-29T09:15:32.848] [ERROR] app - { message: 'Authentication Error', status: 401 }
+[2021-05-29T09:15:49.103] [ERROR] app - { message: 'Authentication Error', status: 401 }
