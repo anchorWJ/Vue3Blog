@@ -7,25 +7,20 @@
           <a-form
           layout="vertical"
           :model="formState"
-          @finish="handleFinish"
-          @finishFailed="handleFinishFailed"
+          @submit="handleFinish"
           >
-          <a-form-item>
-            <a-input v-model:value="formState.user" placeholder="Username">
+          <a-form-item v-bind="validateInfos.username">
+            <a-input v-model:value="formState.username" placeholder="Username">
               <template #prefix><UserOutlined style="color: rgba(0, 0, 0, 0.25)" /></template>
             </a-input>
           </a-form-item>
-          <a-form-item>
+          <a-form-item v-bind="validateInfos.password">
             <a-input v-model:value="formState.password" type="password" placeholder="Password">
               <template #prefix><LockOutlined style="color: rgba(0, 0, 0, 0.25)" /></template>
             </a-input>
           </a-form-item>
           <a-form-item>
-            <a-button
-              type="primary"
-              html-type="submit"
-              :disabled="formState.user === '' || formState.password === ''"
-            >
+            <a-button type="primary" html-type="submit" :disabled="disabled">
               Log in
             </a-button>
           </a-form-item>
@@ -35,27 +30,75 @@
   </div>
 </template>
 <script>
+import { useErrorNotice, useSuccessNotice } from "@u/notification.js"
+import { useRoutePathToPage } from "@u/router.js"
+import { useLocalStorage } from "@u/localStorage.js"
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
-import { defineComponent, reactive, toRaw } from 'vue';
+import { defineComponent, reactive, computed } from 'vue';
+import http from "@u/http.js"
+import { useForm } from "@ant-design-vue/use"
+
 export default defineComponent({
   setup() {
     const formState = reactive({
-      user: 'kyaputen',
-      password: 'wsimple',
+      username: '',
+      password: '',
     });
 
-    const handleFinish = () => 
-      console.log(toRaw(formState));
-    
+    const disabled = computed(
+      () => {
+        const status = [
+          validateInfos.username.validateStatus,
+          validateInfos.password.validateStatus
+        ].every((status) => status === "success")
+        return !status
+      }
+    );
 
-    const handleFinishFailed = errors => {
-      console.log(errors);
+    const rules = reactive({
+      username: [
+        {
+          required: true,
+          message: 'confirm your username name'
+        }
+      ],
+      password: [
+        {
+          required: true,
+          pattern: /^(?=.*[a-z])(?=.*\d)[^]{8,16}$/,
+          message: "password must be string and has special character and over 8 under 16"
+        }
+      ]
+    });
+
+    const { validateInfos } = useForm(formState, rules)
+
+    const [ token ] = useLocalStorage("token")
+    const toArticle = useRoutePathToPage("/manage/articles/1")
+    const handleFinish = async () => {
+      try {
+        const res = await http.post('/users/login', formState)
+        token.value = res.data.token
+        useSuccessNotice({
+          message: "Login Success",
+          duration: 1
+        })
+        setTimeout(() => {
+          toArticle()
+        }, 1500)
+      } catch (error) {
+        useErrorNotice({
+          message: "Login Failed",
+          description: error.reason || "unknow error",
+          duration: 2
+        })
+      }
     };
-
     return {
+      disabled,
+      validateInfos,
       formState,
       handleFinish,
-      handleFinishFailed,
     };
   },
 

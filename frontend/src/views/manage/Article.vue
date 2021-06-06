@@ -1,16 +1,20 @@
 <template>
-  <div class="min-h-screen mt-48 ml-16 mr-16">
-    <a-table :columns="columns" :data-source="data" :pagination="pagination" @change="handleChange">
+  <div class="mt-52 ml-16">
+    <a-button type="primary" @click="toEditPage">New Article</a-button>
+  </div>
+  
+  <div class="mt-6 ml-16 mr-16">
+    <a-table :columns="columns" :data-source="data" :pagination="pagination" row-key="id" :loading="loading" @change="handleChange">
       <template #type="{ text }">
         <a-tag :color="useColor(text)">
           {{ text.toUpperCase() }}
         </a-tag>
       </template>
-      <template #edit>
+      <template #edit="{ text: { id } }">
         <div class="grid grid-cols-3 gap-4">
-          <a-button>check</a-button>
+          <a-button @click="check(id)">check</a-button>
           <a-button type="primary">edit</a-button>
-          <a-button type="danger">delete</a-button>
+          <a-button type="danger" @click="destory(id)">delete</a-button>
         </div>
       </template>
     </a-table>
@@ -19,19 +23,21 @@
 
 <script>
 import { articleViewConfig } from "@vp/editArticle/article.js"
-import { defineComponent } from 'vue';
+import { defineComponent, watchEffect, ref } from 'vue';
 import { useColorMap } from "@u/color.js"
-import { useRouteParamChange } from "@u/router.js"
+import { useRouteParamChange, useRouteNameToPage, useRoutePathToPage } from "@u/router.js"
 import { useLinkedRouteParam } from "@u/route.js"
-
+import http, { lazyRequest } from "@u/http.js"
+import { useErrorNotice, useSuccessNotice } from "@u/notification.js"
+import { useState } from "@u/hook.js"
 
 export default defineComponent({
   setup() {
-    const { columns, data, pagination } = articleViewConfig
+    const { columns, pagination } = articleViewConfig
     const colorMap = new Map([
-      ["vue", "#10B981"],
-      ["aws", "#F59E0B"],
-      ["ios", "#D1D5DB"]
+      ["Swift", "#10B981"],
+      ["AWS", "#F59E0B"],
+      ["Vue", "#D1D5DB"]
     ]) 
     const useColor = useColorMap(colorMap)
 
@@ -39,12 +45,73 @@ export default defineComponent({
     const pageNumberChange = useRouteParamChange("pageNum")
     const handleChange = ({ current }) => pageNumberChange(current)
 
+    const toEditPage = useRouteNameToPage("ManageEditor")
+
+    const data = ref([])
+
+    const [loading, setLoading] = useState(false)
+
+    watchEffect (async() => {
+      setLoading(true)
+      try {
+        const request = await http.get(`/articles?limit=${pagination.pageSize}&page=${pagination.current}`)
+        
+        const [res] = await lazyRequest(request, 400)
+        data.value = res.data.rows
+        pagination.total = res.data.count
+      } catch (error) {
+        useErrorNotice({
+          message: "get article error!",
+          description: error.reason || "unknow error",
+
+        })
+      } finally {
+        setLoading(false)
+      }
+    }, 
+    {
+      flush: "post"
+    })
+
+    const destory = async (id) => {
+      setLoading(true)
+      try {
+        await http.delete(`/articles/${id}`)
+        useSuccessNotice({
+          message: "delete success!",
+        })
+
+        const request = await http.get(`/articles?limit=${pagination.pageSize}&page=${pagination.current}`)
+        
+        const [res] = await lazyRequest(request, 700)
+        data.value = res.data.rows
+        pagination.total = res.data.count
+
+      } catch (error) {
+        useErrorNotice({
+          message: "delete failed!",
+          description: error.reason || "unkown error"
+        })
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    const check = id => {
+      const toPage = useRoutePathToPage(`/details/${id}`)
+      toPage()
+    }
+
     return {
       data,
       columns,
       useColor,
       pagination,
-      handleChange
+      handleChange,
+      toEditPage,
+      loading,
+      destory,
+      check
     } 
   },
 

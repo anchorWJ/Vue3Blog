@@ -46,6 +46,11 @@
         path: "articles/:pageNum",
         name: "ManageArticle",
         component: () => import("@v/manage/Article.vue")
+      },
+      {
+        path: "/details/:id",
+        name: "Details",
+        component: () => import("@v/details/Index.vue")
       }
     ]
   }

@@ -1,0 +1,51 @@
+version: '3'
+services:
+ mysql:
+   image: mysql:8.0
+   env_file: ./mysql/mysql.env
+   cap_add:
+      - SYS_NICE
+   environment:
+     - TZ=Asia/Tokyo
+   ports:
+     - '3306:3306'
+   volumes:
+      - ./mysql/conf:/etc/mysql/conf.d/:ro
+      - mysqldata:/var/lib/mysql
+   networks:
+     - default
+ app:
+   build: 
+      context: ./
+      dockerfile: ./backend/Dockerfile
+   env_file: ./backend/db.env
+   ports:
+     - '3000:3000'
+   volumes:
+     - ./backend:/app
+   working_dir: /app
+   command: npm run dev
+   networks:
+     - default
+   depends_on:
+     - mysql
+ vue:
+   build: 
+      context: ./
+      dockerfile: ./frontend/Dockerfile
+   ports:
+     - '8080:8080'
+   volumes:
+     - ./frontend:/client
+   working_dir: /client
+   command: npm run serve
+   networks:
+     - default
+   depends_on:
+     - app
+
+networks:
+  default:
+
+volumes:
+  mysqldata:

@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col">
-    <div class="fixed  z-20 min-w-full">
+  <div class="flex flex-col h-screen justify-between">
+    <div class="fixed z-20 min-w-full">
       <titleHeader :config="appViewConfig" />
     </div>
     <div class="z-10">

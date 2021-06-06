@@ -6,7 +6,7 @@ const config = require("../config")
  * @type {Custom.IRouter}
  */
 module.exports = router => {
-  router.prefix("/article")
+  router.prefix("/api/articles")
 
   router.use(
     jwt({

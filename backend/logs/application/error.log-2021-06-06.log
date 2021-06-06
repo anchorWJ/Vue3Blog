@@ -1,0 +1,36 @@
+[2021-06-06T03:17:13.923] [ERROR] app - { message: '"cardImage" is not allowed', status: 500 }
+[2021-06-06T03:34:28.432] [ERROR] app - { message: '"cardImage" is not allowed', status: 500 }
+[2021-06-06T04:22:57.340] [ERROR] app - {
+  message: 'query-page must be number, and min must be 1',
+  status: 400
+}
+[2021-06-06T04:31:49.957] [ERROR] app - {
+  message: 'query-page must be number, and min must be 1',
+  status: 400
+}
+[2021-06-06T04:32:50.086] [ERROR] app - {
+  message: 'query-page must be number, and min must be 1',
+  status: 400
+}
+[2021-06-06T04:33:39.693] [ERROR] app - {
+  message: 'query-page must be number, and min must be 1',
+  status: 400
+}
+[2021-06-06T04:34:00.842] [ERROR] app - {
+  message: 'query-page must be number, and min must be 1',
+  status: 400
+}
+[2021-06-06T04:42:53.431] [ERROR] app - {
+  message: 'query-page must be number, and min must be 1',
+  status: 400
+}
+[2021-06-06T06:01:15.996] [ERROR] app - {
+  message: 'query-page must be number, and min must be 1',
+  status: 400
+}
+[2021-06-06T08:17:42.681] [ERROR] app - {
+  message: 'query-page must be number, and min must be 1',
+  status: 400
+}
+[2021-06-06T09:24:32.290] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-06T09:28:43.971] [ERROR] app - { message: 'param-id must ber number', status: 400 }

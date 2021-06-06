@@ -1,0 +1,44 @@
+[2021-06-05T02:10:21.973] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-05T02:34:20.720] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-05T02:34:26.948] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-05T02:39:21.038] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-05T05:01:04.360] [ERROR] app - {
+  message: 'body-username is must be string and under 10 words',
+  status: 400
+}
+[2021-06-05T05:03:12.350] [ERROR] app - {
+  message: 'body-username is must be string and under 10 words',
+  status: 400
+}
+[2021-06-05T05:03:13.644] [ERROR] app - {
+  message: 'body-username is must be string and under 10 words',
+  status: 400
+}
+[2021-06-05T05:03:49.892] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-05T14:25:49.404] [ERROR] app - { message: 'Authentication Error', status: 401 }
+[2021-06-05T14:27:08.085] [ERROR] app - { message: 'Authentication Error', status: 401 }
+[2021-06-05T14:31:31.244] [ERROR] app - {
+  message: 'body-type must belong Swift, AWS, Vue, Kotlin, Python, Others',
+  status: 400
+}
+[2021-06-05T14:32:09.581] [ERROR] app - {
+  message: 'body-type must belong Swift, AWS, Vue, Kotlin, Python, Others',
+  status: 400
+}
+[2021-06-05T14:32:46.130] [ERROR] app - { message: '"image" is not allowed', status: 500 }
+[2021-06-05T14:33:08.519] [ERROR] app - { message: '"image" is not allowed', status: 500 }

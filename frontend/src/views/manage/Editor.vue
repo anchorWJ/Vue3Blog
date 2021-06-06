@@ -9,28 +9,44 @@
       <div :innerHTML='content.html'></div>
     </div>
   </div>
+
   <div>
-    <a-modal class="pt-56" v-model:visible="visible" title="publish blog" @ok="submit(formState)">
+    <a-modal class="pt-56" v-model:visible="visible" title="Publish Blog" @ok="submit(formState)">
       <a-form layout="vertical" :model="formState" >
-        <a-form-item>
+        <a-form-item >
           <a-input placeholder="Title" class="w-full" v-model:value="formState.title">
             <template #prefix><EditOutlined style="color: rgba(0, 0, 0, 0.25)" /></template>
           </a-input>
         </a-form-item>
-        <a-form-item>
+        <a-form-item >
           <a-input placeholder="Introduction" class="w-full" v-model:value="formState.synopsis">
             <template #prefix><FontSizeOutlined style="color: rgba(0, 0, 0, 0.25)" /></template>
           </a-input>
         </a-form-item>
-        <a-form-item>
+
+        <!-- <a-upload
+          v-model:file-list="formState.cardImage"
+          :beforeUpload="beforeUpload"
+          :action="uploadImage"
+          :multiple="false"
+          accept=".png, .jpg, .gif"
+        >
+          <a-button>
+            <upload-outlined></upload-outlined>
+            Click to Upload
+          </a-button>
+        </a-upload> -->
+
+        <a-form-item class="mt-6">
           <a-radio-group v-model:value="formState.type">
-            <a-radio value="vue">Vue</a-radio>
-            <a-radio value="ios">iOS</a-radio>
-            <a-radio value="aws">AWS</a-radio>
-            <a-radio value="python">Python</a-radio>
-            <a-radio value="others">Others</a-radio>
+            <a-radio value="Vue">Vue</a-radio>
+            <a-radio value="Swift">Swift</a-radio>
+            <a-radio value="AWS">AWS</a-radio>
+            <a-radio value="Python">Python</a-radio>
+            <a-radio value="Others">Others</a-radio>
             </a-radio-group>
         </a-form-item>
+
       </a-form>
     </a-modal>
   </div>
@@ -38,80 +54,122 @@
 
 <script>
 // TODO: move out logic to modal.vue
-import { onMounted, ref, reactive, defineComponent, toRaw } from 'vue';
+import { onMounted, ref, reactive, defineComponent } from 'vue';
 import WangEditor from 'wangeditor';
-import xss from "xss";
-import { useMessageNotice, useSuccessNotice } from "@u/notification.js"
-import { useDebounce } from "@u/noticeDebounce.js"
 import { EditOutlined, FontSizeOutlined } from '@ant-design/icons-vue';
+import { useMessageNotice, useSuccessNotice, useErrorNotice } from "@u/notification.js"
+import { useDebounce } from "@u/noticeDebounce.js"
+import { useLocalStorage } from "@u/localStorage.js"
+import http, { lazyRequest } from "@u/http.js"
+
 export default defineComponent({
   components: {
     EditOutlined,
     FontSizeOutlined,
+    // UploadOutlined
   },
 
-    setup() {
-        const editor = ref();
-        
-        const content = reactive({
-            html: '',
-            text: '',
+  setup() {
+    const editor = ref();
+    
+    const content = reactive({
+        html: '',
+        text: '',
+    });
+    let instance;
+
+    const [draft] = useLocalStorage("draft")
+
+    onMounted(() => {
+        instance = new WangEditor(editor.value);
+        Object.assign(instance.config, {
+            onchange() {
+                console.log('change');
+            },
         });
-        let instance;
-        onMounted(() => {
-            instance = new WangEditor(editor.value);
-            Object.assign(instance.config, {
-                onchange() {
-                    console.log('change');
-                },
-            });
-            instance.config.height = 1000;
-            instance.create();
+        instance.config.height = 1000;
+        instance.create();
+        instance.txt.html(draft.value)
+        instance.config.onchange = useDebounce((newHtml) => {
+          draft.value = newHtml
+        }, 500)
+    });
+    // show entryed text really time
+    const syncHTML = () => {
+        content.html = instance.txt.html();
+    };
+    
+    // after publish button show modal
+    const visible = ref(false)
+    const setVisible = bool => visible.value = bool
 
-            instance.txt.html(localStorage.getItem("draft"))
+    // modal form content
+    const formState = reactive({
+      title: '',
+      synopsis: '',
+      // cardImage: [],
+      type: ''
+    })
 
-            instance.config.onchange = useDebounce((newHtml) => {
-              localStorage.setItem("draft", xss(newHtml));
-              useMessageNotice({
-                message: "article",
-                description: "saved locally",
-          
-              })
-            }, 3000)
-        });
+    // // upload image
+    // const beforeUpload = file => {
+    //   if (file.size / 1024 / 1024 > 4) {
+    //     useErrorNotice({
+    //       message: `${info.file.name} can not bogger than 4M`,
+    //       duration: 3
+    //     })
+    //     return beforeUpload
+    //   }
+      // if (info.file.status !== 'uploading') {
+      //   console.log(info.file, info.fileList);
+      // }
 
-        // show entryed text really time
-        const syncHTML = () => {
-            content.html = instance.txt.html();
-        };
+      // if (info.file.status === 'done') {
+      //   useSuccessNotice({
+      //     message: `${info.file.name} file uploaded successfully`,
+      //     duration: 2
+      //   })
+      // } else if (info.file.status === 'error') {
+      //   useErrorNotice({
+      //     message: `${info.file.name} file upload failed.`,
+      //     duration: 2
+      //   })
+      // }
+    // };
 
-        // after publish button show modal
-        const visible = ref(false)
-        const setVisible = bool => visible.value = bool
-        // modal form content
-        const formState = reactive({
-          title: '',
-          synopsis: '',
-          type: ''
+    const submit = async (record) => {
+      try {
+        const request = await http.post("/articles", {
+          ...record,
+          // cardImage: ,
+          content: instance.txt.html()
         })
 
-        const submit = (record) => {
-          console.log(toRaw(record)); 
-          useSuccessNotice({
-            message: "Succesed!"
-          })
-        }
+        await lazyRequest(request, 2000)
+        useSuccessNotice({
+          message: "Succesed!"
+        })
+      } catch (error) {
+        useErrorNotice({
+          message: "Failed!",
+          description: error.reason || "unknow error"
+        })
+      } finally {
+        setVisible(false)
+      }
+    }
 
-        return {
-            syncHTML,
-            editor,
-            content,
-            useMessageNotice,
-            visible,
-            setVisible,
-            formState,
-            submit
-        };
-    },
+    return {
+        syncHTML,
+        editor,
+        content,
+        useMessageNotice,
+        visible,
+        setVisible,
+        formState,
+        submit,
+        // handleChange,
+    };
+  },
 });
 </script>

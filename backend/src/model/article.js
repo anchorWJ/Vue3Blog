@@ -16,6 +16,10 @@ module.exports = sequelize => {
         allowNull: false,
         comment: "Introduce"
       },
+      cardImage: {
+        type: DataTypes.BLOB("long"),
+        comment: "Card Image"
+      },
       type: {
         type: DataTypes.ENUM,
         values: ["Swift", "AWS", "Vue", "Kotlin", "Python", "Others"],
@@ -26,6 +30,10 @@ module.exports = sequelize => {
         type: DataTypes.TEXT("MEDIUM"),
         allowNull: false,
         comment: "Detail"
+      },
+      contentImage: {
+        type: DataTypes.BLOB("long"),
+        comment: "Content Image"
       },
       createdAt: {
       type: DataTypes.STRING,

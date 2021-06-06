@@ -1,0 +1,84 @@
+[2021-06-04T08:29:57.334] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T08:31:10.196] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T08:31:18.597] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T08:31:40.569] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T08:32:10.922] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T08:32:26.981] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T08:36:49.714] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T08:38:16.313] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T08:38:22.699] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T08:39:48.662] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T08:40:04.744] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T08:47:31.304] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T09:10:03.246] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T09:10:10.769] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T09:10:15.047] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T09:10:20.986] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T09:14:23.701] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T09:14:43.169] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T11:04:51.471] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T11:04:56.040] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
+[2021-06-04T11:06:10.597] [ERROR] app - {
+  message: 'body-password must be string and has special character and over 8 under 16',
+  status: 400
+}
