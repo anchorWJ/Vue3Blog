@@ -13,6 +13,7 @@ import { Alert } from "ant-design-vue"
 import { useLinkedRouteParam } from "@u/route.js"
 import http from "@u/http.js"
 import { useWarningNotice } from "@u/notification.js"
+import "wangeditor"
 
 export default {
   components: {
@@ -32,6 +33,11 @@ export default {
           description: error.data || error.reason || "unkown error"
         })
       }
+    },
+    {
+      // flush表示回调调用时机 
+      // post在组件更新之后，pre组件更新之前，sync同步调用
+      flush: "post"
     })
 
     return {

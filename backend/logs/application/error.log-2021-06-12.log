@@ -1,0 +1,63 @@
+[2021-06-12T04:00:42.558] [ERROR] app - { message: 'body-title must be string', status: 400 }
+[2021-06-12T05:17:34.977] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T07:36:37.272] [ERROR] app - {
+  message: 'query-page must be number, and min must be 1',
+  status: 400
+}
+[2021-06-12T07:36:45.491] [ERROR] app - {
+  message: 'query-page must be number, and min must be 1',
+  status: 400
+}
+[2021-06-12T07:37:47.221] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T07:38:03.401] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T08:00:54.161] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T08:00:59.012] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T08:01:32.337] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T08:02:42.916] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T08:03:11.794] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T08:03:21.137] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T08:25:26.434] [ERROR] app - {
+  message: 'query-limit must be number, and min must be 0',
+  status: 400
+}
+[2021-06-12T08:25:59.697] [ERROR] app - {
+  message: 'query-limit must be number, and min must be 0',
+  status: 400
+}
+[2021-06-12T08:25:59.730] [ERROR] app - {
+  message: 'query-limit must be number, and min must be 0',
+  status: 400
+}
+[2021-06-12T09:50:44.368] [ERROR] app - {
+  message: 'query-limit must be number, and min must be 0',
+  status: 400
+}
+[2021-06-12T10:05:02.519] [ERROR] app - { message: 'Undeclared variable: NaN', status: 500 }
+[2021-06-12T10:05:10.266] [ERROR] app - { message: 'Undeclared variable: NaN', status: 500 }
+[2021-06-12T10:19:52.208] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T10:23:10.365] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T10:24:00.939] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T10:25:37.576] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T10:26:47.712] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T10:26:53.339] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T10:27:13.206] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T10:27:24.571] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T10:38:06.841] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T10:48:44.223] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T10:59:28.525] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T11:22:38.523] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T14:12:38.591] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T14:14:14.348] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T14:14:53.804] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T14:16:24.782] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T14:16:45.158] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T14:19:25.997] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T14:32:03.037] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T14:36:39.129] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T14:36:51.636] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-12T15:01:26.168] [ERROR] app - { message: 'Authentication Error', status: 401 }
+[2021-06-12T15:03:43.563] [ERROR] app - { message: 'Login First!', status: 401 }
+[2021-06-12T15:03:46.592] [ERROR] app - { message: 'Login First!', status: 401 }
+[2021-06-12T15:03:50.493] [ERROR] app - { message: 'Login First!', status: 401 }
+[2021-06-12T15:04:01.050] [ERROR] app - { message: 'Login First!', status: 401 }
+[2021-06-12T15:04:34.353] [ERROR] app - { message: 'Login First!', status: 401 }

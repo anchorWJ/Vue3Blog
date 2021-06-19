@@ -12,8 +12,8 @@ export const articleViewConfig = {
     },
     {
       title: 'publish time',
-      dataIndex: 'createAt',
-      key: 'createAt',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
     },
     {
       title: 'update time',

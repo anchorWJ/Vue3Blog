@@ -22,9 +22,9 @@ module.exports = sequelize => {
       },
       type: {
         type: DataTypes.ENUM,
-        values: ["Swift", "AWS", "Vue", "Kotlin", "Python", "Others"],
+        values: ["Vue", "Swift", "Flutter", "Python", "Go", "AWS", "Architecture", "Others"],
         allowNull: false,
-        comment: "categories[Swift, AWS, Vue, Kotlin, Python, Others]"
+        comment: "categories[Vue, Swift, Flutter, Python, Go, AWS, Architecture, Others]"
       },
       content: {
         type: DataTypes.TEXT("MEDIUM"),
@@ -36,6 +36,12 @@ module.exports = sequelize => {
         comment: "Content Image"
       },
       createdAt: {
+      type: DataTypes.STRING,
+      defaultValue() {
+        return moment().format("YYYY-MM-DD HH:mm")
+      }
+    },
+    updateAt: {
       type: DataTypes.STRING,
       defaultValue() {
         return moment().format("YYYY-MM-DD HH:mm")

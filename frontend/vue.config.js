@@ -3,6 +3,7 @@ const { resolve } = require("path")
 
 module.exports = {
     publicPath: "./",
+    productionSourceMap: false,
     devServer: {
       proxy: {
         "/api": {

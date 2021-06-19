@@ -1,11 +1,13 @@
-const Joi = require("joi")
+const Joi = require("joi");
+const typeList = ["Swift", "Flutter", "Python", "Go", "AWS", "Architecture", "Others"];
 
 exports.schema = {
 
   index: Joi.object({
     limit: Joi.number()
       .min(0)
-      .default(5)
+      // change me => add a pagination function
+      .default(30)
       .error(Error("query-limit must be number, and min must be 0")),
     page: Joi.number()
       .min(1)
@@ -37,7 +39,7 @@ exports.schema = {
     type: Joi.string()
       .valid("Swift", "AWS", "Vue", "Kotlin", "Python", "Others")
       .required()
-      .error(Error("body-type must belong Swift, AWS, Vue, Kotlin, Python, Others")),
+      .error(Error("body-type must belong Swift, Flutter, Go, AWS, Vue, Architecture, Python, Others")),
     content: Joi.string()
       .empty("")
       .default("")

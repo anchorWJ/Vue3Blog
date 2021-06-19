@@ -30,7 +30,7 @@
     children: [
       {
         path: "",
-        redirect: "/manage/login"
+        redirect: "/manage/articles/1"
       },
       {
         path: "login",

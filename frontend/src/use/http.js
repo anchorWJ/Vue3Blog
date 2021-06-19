@@ -12,16 +12,21 @@ axios.interceptors.request.use(
   err => Promise.reject(err)
 )
 
+const isDEV = process.env.NODE_ENV === "development"
+
 axios.interceptors.response.use(
   res => res.data,
   err => {
-    console.log("error form axios post", err.response.data);
+    if (isDEV) {
+      console.log("error form axios post", err.response.data);
+    }
     return Promise.reject(err.response.data)
   }
 )
 
-export const lazyRequest = request => {
-  const promise = new Promise((resolve, deply = 1000) => {
+// show notice slower
+export const lazyRequest = (request, deply = 1000) => {
+  const promise = new Promise((resolve) => {
     setTimeout(resolve, deply)
   })
   return Promise.all([request, promise])

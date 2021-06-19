@@ -28,15 +28,25 @@ const errorHandler = (options = {}) => {
         status = 400
       }
 
+      const isAuthenticationError = message === "Authentication Error"
+      if (isAuthenticationError) {
+        message = "Login First!"
+      }
+
       const isProd = ctx.app.env === "production"
       const isSeverError = status === 500
       const isProdServerError = isProd && isSeverError
 
-      if (isProdServerError) {
+      const displayableError = [
+        isParameterError,
+        isAuthenticationError
+      ].includes(true)
+
+      if (!displayableError && isProdServerError) {
+        ctx.app.emit("error", { message, status })
         message = "Server Error"
       }
       ctx.fail(message, status)
-      ctx.app.emit("error", { message, status })
     }
   }
 }

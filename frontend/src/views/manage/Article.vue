@@ -13,7 +13,7 @@
       <template #edit="{ text: { id } }">
         <div class="grid grid-cols-3 gap-4">
           <a-button @click="check(id)">check</a-button>
-          <a-button type="primary">edit</a-button>
+          <a-button type="primary" @click="update(id)">edit</a-button>
           <a-button type="danger" @click="destory(id)">delete</a-button>
         </div>
       </template>
@@ -25,7 +25,7 @@
 import { articleViewConfig } from "@vp/editArticle/article.js"
 import { defineComponent, watchEffect, ref } from 'vue';
 import { useColorMap } from "@u/color.js"
-import { useRouteParamChange, useRouteNameToPage, useRoutePathToPage } from "@u/router.js"
+import { useRouteParamChange, useRouteNameToPage, useRoutePathToPage, useRouteNameWithQueryToPage } from "@u/router.js"
 import { useLinkedRouteParam } from "@u/route.js"
 import http, { lazyRequest } from "@u/http.js"
 import { useErrorNotice, useSuccessNotice } from "@u/notification.js"
@@ -40,7 +40,6 @@ export default defineComponent({
       ["Vue", "#D1D5DB"]
     ]) 
     const useColor = useColorMap(colorMap)
-
     pagination.current = useLinkedRouteParam("pageNum")
     const pageNumberChange = useRouteParamChange("pageNum")
     const handleChange = ({ current }) => pageNumberChange(current)
@@ -83,7 +82,7 @@ export default defineComponent({
 
         const request = await http.get(`/articles?limit=${pagination.pageSize}&page=${pagination.current}`)
         
-        const [res] = await lazyRequest(request, 700)
+        const [res] = await lazyRequest(request, 1000)
         data.value = res.data.rows
         pagination.total = res.data.count
 
@@ -102,6 +101,8 @@ export default defineComponent({
       toPage()
     }
 
+    const update = useRouteNameWithQueryToPage("ManageEditor", "id")
+
     return {
       data,
       columns,
@@ -111,7 +112,8 @@ export default defineComponent({
       toEditPage,
       loading,
       destory,
-      check
+      check,
+      update
     } 
   },
 

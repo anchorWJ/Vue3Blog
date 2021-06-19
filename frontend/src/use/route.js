@@ -10,3 +10,8 @@ export const useLinkedRouteParam = (type, isNum = true) => {
   })
   return currentParam
 }
+
+export const useRouteQuery = type => {
+  const route = useRoute()
+  return route.query[type]
+}

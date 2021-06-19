@@ -34,3 +34,4 @@
 }
 [2021-06-06T09:24:32.290] [ERROR] app - { message: 'param-id must ber number', status: 400 }
 [2021-06-06T09:28:43.971] [ERROR] app - { message: 'param-id must ber number', status: 400 }
+[2021-06-06T09:33:49.642] [ERROR] app - { message: 'param-id must ber number', status: 400 }

@@ -1,8 +1,12 @@
 <template>
   <div class="min-h-screen mt-48 ml-16 mr-16">
-    <div class="col-start-1 col-span-2 mb-6">
-      <a-button @click='syncHTML'>Check</a-button>
-      <a-button type="danger" @click="setVisible(true)">Publish</a-button>
+    <div class="flex justify-start mb-6">
+      <div>
+        <a-button @click='syncHTML'>Check</a-button>
+      </div>
+      <div class="ml-6">
+        <a-button type="danger" @click="setVisible(true)">{{submitButtonMessage}}</a-button>
+      </div>
     </div>
     <div class="grid grid-cols-2 gap-8">
       <div ref='editor'></div>
@@ -38,13 +42,24 @@
         </a-upload> -->
 
         <a-form-item class="mt-6">
-          <a-radio-group v-model:value="formState.type">
+          <a-checkbox-group v-model:value="formState.type">
+            <a-checkbox value="Vue">Vue</a-checkbox>
+            <a-checkbox value="Swift">Swift</a-checkbox>
+            <a-checkbox value="Flutter">Flutter</a-checkbox>
+            <a-checkbox value="Python">Python</a-checkbox>
+            <a-checkbox value="AWS">AWS</a-checkbox>
+            <a-checkbox value="Architecture">Architecture</a-checkbox>
+            <a-checkbox value="Others">Others</a-checkbox>
+          </a-checkbox-group>
+          <!-- <a-radio-group v-model:value="formState.type">
             <a-radio value="Vue">Vue</a-radio>
             <a-radio value="Swift">Swift</a-radio>
-            <a-radio value="AWS">AWS</a-radio>
+            <a-radio value="Fluter">Fluter</a-radio>
             <a-radio value="Python">Python</a-radio>
+            <a-radio value="AWS">AWS</a-radio>
+            <a-radio value="Architecture">Architecture</a-radio>
             <a-radio value="Others">Others</a-radio>
-            </a-radio-group>
+            </a-radio-group> -->
         </a-form-item>
 
       </a-form>
@@ -61,6 +76,7 @@ import { useMessageNotice, useSuccessNotice, useErrorNotice } from "@u/notificat
 import { useDebounce } from "@u/noticeDebounce.js"
 import { useLocalStorage } from "@u/localStorage.js"
 import http, { lazyRequest } from "@u/http.js"
+import { useRouteQuery } from "@u/route.js"
 
 export default defineComponent({
   components: {
@@ -103,12 +119,11 @@ export default defineComponent({
     const visible = ref(false)
     const setVisible = bool => visible.value = bool
 
-    // modal form content
     const formState = reactive({
       title: '',
       synopsis: '',
       // cardImage: [],
-      type: ''
+      type: []
     })
 
     // // upload image
@@ -137,15 +152,17 @@ export default defineComponent({
       // }
     // };
 
-    const submit = async (record) => {
+    
+    // post article
+    let submit = async (record) => {
       try {
-        const request = await http.post("/articles", {
+        const request = http.post("/articles", {
           ...record,
           // cardImage: ,
           content: instance.txt.html()
         })
 
-        await lazyRequest(request, 2000)
+        await lazyRequest(request, 1000)
         useSuccessNotice({
           message: "Succesed!"
         })
@@ -159,6 +176,49 @@ export default defineComponent({
       }
     }
 
+    // update article
+    const id = useRouteQuery("id")
+    const updateFlag = Boolean(id)
+
+    if (updateFlag) {
+      onMounted(async () => {
+        try {
+          const { data } = await http.get(`/articles/${id}`)
+          instance.txt.html(data.content)
+          // diffrent with reactive() and ref() 
+          formState.title = data.title
+          formState.synopsis = data.synopsis
+          formState.type = data.type
+        } catch (error) {
+          useErrorNotice({
+            message: "update faileld!",
+            description: error.reason || "unknow error"
+          })
+        }
+      })
+
+      submit = async (record) => {
+        try {
+          await http.put(`/articles/${id}`, {
+            ...record,
+            content: instance.txt.html()
+          })
+          useSuccessNotice({
+            message: "Update Success!"
+          })
+        } catch (error) {
+          useErrorNotice({
+            message: "Update Failed!",
+            description: error.reason || "unknow error"
+          })
+        } finally {
+          setVisible(false)
+        }
+      }
+    }
+
+    const submitButtonMessage = updateFlag ? "Update" : "Publish"
+
     return {
         syncHTML,
         editor,
@@ -168,6 +228,7 @@ export default defineComponent({
         setVisible,
         formState,
         submit,
+        submitButtonMessage,
         // handleChange,
     };
   },
