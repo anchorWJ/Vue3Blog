@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen mt-80 mb-56  max-w-3xl mx-auto">
+  <div class="min-h-screen mt-80 max-w-3xl mx-auto">
     <div class="grid grid-cols-6 gap-4 rounded-lg ml-24 mr-24  pt-16 pr-24 pl-24 bg-gray-100 ring-4 ring-gray-200
     transition duration-500 ease-in-out  hover:bg-gray-300 transform hover:-translate-y-1 hover:scale-110"
     >

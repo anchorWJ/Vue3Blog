@@ -16,8 +16,9 @@ module.exports = sequelize => {
         allowNull: false,
         comment: "Introduce"
       },
-      cardImage: {
-        type: DataTypes.BLOB("long"),
+      cardImages: {
+        type: DataTypes.STRING(1000),
+        allowNull: false,
         comment: "Card Image"
       },
       type: {

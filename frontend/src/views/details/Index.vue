@@ -1,28 +1,36 @@
 <template>
-  <div class="min-h-screen mt-32 mb-16 mr-16 ml-16 bg-gray-300">
-    <h1>{{ article.title }}</h1>
-    <a-tag color="#42A5F5">{{ article.type }}</a-tag>
-    <a-alert :message="article.synopsis" type="info" class="synopsis" v-if="article.synopsis"></a-alert>
-    <main v-html="article.content"></main>
+  <div class="min-h-screen flex flex-col gap-12 mt-64 mb-16 mr-16 ml-16">
+    <div class="text-5xl font-medium place-self-center">
+      {{ article.title }}
+    </div>
+    <div class="text-sm flex space-x-8 place-self-center text-gray-400">
+      <div class="mt-1">{{ article.createdAt }}</div>
+      <div class="border-2 rounded-full py-1 px-2 border-gray-400">{{ article.type }}</div>
+    </div>
+    <div class="place-self-center w-2/3">
+      <img :src="article.cardImages" class="rounded-3xl" />
+    </div>
+    <div class="grid grid-cols-1 w-2/3 place-self-center rounded-3xl ring-gray-800 shadow-2xl">
+      <div class="text-lg w-2/3 place-self-center pt-24">
+        <main v-html="article.content"></main>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { ref, watchEffect } from "vue"
-import { Alert } from "ant-design-vue"
 import { useLinkedRouteParam } from "@u/route.js"
+import 'highlight.js/styles/androidstudio.css';
 import http from "@u/http.js"
 import { useWarningNotice } from "@u/notification.js"
 import "wangeditor"
 
 export default {
-  components: {
-    AAlert: Alert
-  },
   setup() {
     const id = useLinkedRouteParam("id")
     const article = ref({})
-
+    
     watchEffect(async () => {
       try {
         const res = await http.get(`/articles/${id.value}`)

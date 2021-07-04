@@ -2,7 +2,9 @@ import { useRouteNameToPage } from "@u/router"
 
 export const appViewConfig = {
     avatar: {
-        src: require("@a/img/cat.jpg")
+        src: require("@a/img/company_Icon.png"),
+        twitter: require("@a/img/twitter.png"),
+        github: require("@a/img/github.png")
     },
     tags: [{
         color: "success",
@@ -17,31 +19,11 @@ export const appViewConfig = {
         text: "Python"
     }],
     menu: [{
-        text: "Home",
-        type: "link",
+        text: "Blog",
         handle: useRouteNameToPage("ShowHome")
     },
     { 
-        text: "iOS",
-        type: "link",
-        handle: useRouteNameToPage("ShowSwift")
-    },
-    {
-        text: "AWS",
-        type: "link"
-    },
-    { 
-      text: "Vue",
-      type: "link",
-      handle: useRouteNameToPage("ShowSwift")
-    },
-    {
-      text: "Python",
-      type: "link"
-    },
-    { 
-      text: "Others",
-      type: "link",
-      handle: useRouteNameToPage("ShowSwift")
+      text: "About",
+      handle: useRouteNameToPage("ShowAbout")
     }]
 }

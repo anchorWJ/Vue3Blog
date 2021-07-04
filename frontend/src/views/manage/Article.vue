@@ -35,9 +35,11 @@ export default defineComponent({
   setup() {
     const { columns, pagination } = articleViewConfig
     const colorMap = new Map([
-      ["Swift", "#10B981"],
-      ["AWS", "#F59E0B"],
-      ["Vue", "#D1D5DB"]
+      ["Swift", "#F59E0B"],
+      ["AWS", "#FCD34D"],
+      ["Vue", "#10B981"],
+      ["Flutter", "#60A5FA"],
+      ["Python", "#2563EB"]
     ]) 
     const useColor = useColorMap(colorMap)
     pagination.current = useLinkedRouteParam("pageNum")

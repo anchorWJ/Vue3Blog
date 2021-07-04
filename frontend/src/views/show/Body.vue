@@ -1,20 +1,17 @@
 <template>
-  <div class="min-h-screen flex mt-40 mb-16 mr-16 ml-16 bg-gray-300">
-    <div class="flex-grow w-8">
-    <!-- This item will grow or shrink as needed -->
-  </div>
-   <div class="flex-shrink w-5/6 justify-self-center">
-    <b-card-container :cardRecords="homeCardRecords"  @handler="handler" ></b-card-container>
-   </div>
-   <div class="flex-grow w-8">
-    <!-- This item will grow or shrink as needed -->
-  </div>
+  <div class="min-h-screen grid grid-cols-2 gap-24 mt-20 mb-24 w-2/3 m-auto">
+    <div>
+      <b-card-container :cardRecords="homeCardLeftRecords"  @handler="handler" ></b-card-container>
+    </div>
+    <div>
+       <b-card-container :cardRecords="homeCardRightRecords"  @handler="handler" ></b-card-container>
+    </div>
   </div>
 </template>
 
 <script>
 import BCardContainer from "@b/cardContainer.vue";
-import { homeCardViewConfig } from "@vp/showCard/home.js";
+import { homeCardLeftViewConfig, homeCardRightViewConfig } from "@vp/showCard/home.js";
 import http from "@u/http.js"
 import { watchEffect } from '@vue/runtime-core';
 // import { useLinkedRouteParam } from "@u/route.js"
@@ -26,13 +23,25 @@ export default {
     BCardContainer,
   },
   setup() {
-    const { homeCardRecords } = homeCardViewConfig
+    const { homeCardLeftRecords } = homeCardLeftViewConfig
+    const { homeCardRightRecords } = homeCardRightViewConfig
     // const pageNum = useLinkedRouteParam("pageNum")
     watchEffect(async () => {
       try {
         const res = await http.get(`/articles`)
-        homeCardRecords.value = res.data.rows
-        console.log(res)
+        const homeCardLeft = new Array();
+        const homeCardRight = new Array();
+        for (var i = 0; i < res.data.rows.length; i=i+2) {
+          homeCardLeft.push(res.data.rows[i])  
+        }
+
+        for (var j = 1; j < res.data.rows.length; j=j+2) {
+          homeCardRight.push(res.data.rows[j])  
+        }
+
+        homeCardLeftRecords.value = homeCardLeft
+        homeCardRightRecords.value = homeCardRight
+
       } catch (error) {
         useWarningNotice({
           message: "Get article failed!",
@@ -49,8 +58,10 @@ export default {
       const toPage = useRoutePathToPage(`/details/${id}`)
       toPage()
     }
+
     return {
-      homeCardRecords,
+      homeCardLeftRecords,
+      homeCardRightRecords,
       handler,
       // limit,
       // total

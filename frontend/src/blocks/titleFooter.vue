@@ -1,24 +1,28 @@
 <template>
-    <div class="bg-gray-100 h-48 grid grid-cols-3 gap-4 pb-8 place-items-center">
+    <div class="bg-gray-100 h-40 grid grid-cols-4 gap-4 pb-4 place-items-center">
+        <div></div>
         <div>
-            <p class="text-2xl font-normal break-words">Who I am</p>
-            <p class="text-sm font-light break-words text-gray-500 pt-8">Software engineer currently residing in Tokyo,</p>
+            <hr width=70>
+            <p class="mt-2 text-2xl font-light break-words">Who I am</p>
+            <p class="text-sm font-light break-words text-gray-500 mt-6">Software engineer currently residing in Tokyo,</p>
             <p class="text-sm font-light break-words text-gray-500">working with iOS,JS,AWS... </p>
         </div>
         <div>
-            <p class="text-xl font-normal break-words">Contact Us</p>
-            <p class="text-sm font-light break-words text-gray-600 pt-2">お問い合わせ</p>
-            <p class="text-sm font-light break-words text-gray-600 pt-2">Donate</p>
-            <p class="text-xl font-normal break-words pt-4"></p>
+            <hr width=30 >
+            <p class="mt-2 text-xl font-light break-words">Tags</p>
+            <div class="pt-4 flex gap-3">
+              <p class="text-xs border-2 rounded-full py-1 px-2 border-gray-300">Swift</p>
+              <p class="text-xs border-2 rounded-full py-1 px-2 border-gray-300">Flutter</p>
+              <p class="text-xs border-2 rounded-full py-1 px-2 border-gray-300">Vue</p>
+              <p class="text-xs border-2 rounded-full py-1 px-2 border-gray-300">AWS</p>
+            </div>
         </div>
-        <div>
-            <p class="text-xl font-normal break-words">Follow Us</p>
-        </div>
+        <div></div>
     </div>
 </template>
 
 <script>
 export default {
-    
+   
 }
 </script>

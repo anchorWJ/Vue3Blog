@@ -28,6 +28,12 @@
           </a-input>
         </a-form-item>
 
+        <a-form-item >
+          <a-input placeholder="Card Image" class="w-full" v-model:value="formState.cardImages">
+            <template #prefix><FileImageOutlined style="color: rgba(0, 0, 0, 0.25)" /></template>
+          </a-input>
+        </a-form-item>
+
         <!-- <a-upload
           v-model:file-list="formState.cardImage"
           :beforeUpload="beforeUpload"
@@ -42,24 +48,15 @@
         </a-upload> -->
 
         <a-form-item class="mt-6">
-          <a-checkbox-group v-model:value="formState.type">
-            <a-checkbox value="Vue">Vue</a-checkbox>
-            <a-checkbox value="Swift">Swift</a-checkbox>
-            <a-checkbox value="Flutter">Flutter</a-checkbox>
-            <a-checkbox value="Python">Python</a-checkbox>
-            <a-checkbox value="AWS">AWS</a-checkbox>
-            <a-checkbox value="Architecture">Architecture</a-checkbox>
-            <a-checkbox value="Others">Others</a-checkbox>
-          </a-checkbox-group>
-          <!-- <a-radio-group v-model:value="formState.type">
+          <a-radio-group v-model:value="formState.type">
             <a-radio value="Vue">Vue</a-radio>
             <a-radio value="Swift">Swift</a-radio>
-            <a-radio value="Fluter">Fluter</a-radio>
+            <a-radio value="Flutter">Flutter</a-radio>
             <a-radio value="Python">Python</a-radio>
             <a-radio value="AWS">AWS</a-radio>
             <a-radio value="Architecture">Architecture</a-radio>
             <a-radio value="Others">Others</a-radio>
-            </a-radio-group> -->
+            </a-radio-group>
         </a-form-item>
 
       </a-form>
@@ -71,7 +68,9 @@
 // TODO: move out logic to modal.vue
 import { onMounted, ref, reactive, defineComponent } from 'vue';
 import WangEditor from 'wangeditor';
-import { EditOutlined, FontSizeOutlined } from '@ant-design/icons-vue';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/androidstudio.css';
+import { EditOutlined, FontSizeOutlined, FileImageOutlined } from '@ant-design/icons-vue';
 import { useMessageNotice, useSuccessNotice, useErrorNotice } from "@u/notification.js"
 import { useDebounce } from "@u/noticeDebounce.js"
 import { useLocalStorage } from "@u/localStorage.js"
@@ -82,6 +81,7 @@ export default defineComponent({
   components: {
     EditOutlined,
     FontSizeOutlined,
+    FileImageOutlined
     // UploadOutlined
   },
 
@@ -104,6 +104,10 @@ export default defineComponent({
             },
         });
         instance.config.height = 1000;
+        instance.config.languageType = [
+          'JavaScript', 'JSON', 'TypeScript', 'Html', 'CSS', 'Go', 'Kotlin', 'Swift', 'Python', 'Markdown', 'Flutter'
+        ];
+        instance.highlight = hljs;
         instance.create();
         instance.txt.html(draft.value)
         instance.config.onchange = useDebounce((newHtml) => {
@@ -122,8 +126,8 @@ export default defineComponent({
     const formState = reactive({
       title: '',
       synopsis: '',
-      // cardImage: [],
-      type: []
+      cardImages: '',
+      type: ''
     })
 
     // // upload image
@@ -189,6 +193,7 @@ export default defineComponent({
           formState.title = data.title
           formState.synopsis = data.synopsis
           formState.type = data.type
+          formState.cardImages = data.cardImages
         } catch (error) {
           useErrorNotice({
             message: "update faileld!",

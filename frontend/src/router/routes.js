@@ -10,19 +10,32 @@
     component: () => import("@v/common/NotFound.vue")
   },
   {
-      path: "/",
-      redirect: "/index"
+    path: "/",
+    redirect: "/index"
   },
   {
     path: "/index",
-    name: "ShowHome",
-    component: () => import("@v/show/Body.vue"),
+    name: "Show",
+    component: () => import("@v/show/Index.vue"),
+    children: [
+      {
+        path: "",
+        redirect: "/index/home"
+      },
+      {
+        path: "home",
+        name: "ShowHome",
+        component: () => import("@v/show/Body.vue")
+      }, 
+      {
+        path: "about",
+        name: "ShowAbout",
+        component: () => import("@v/show/About.vue")
+      },  
+    ]
   },
-  {
-    path: "/swift",
-    name: "ShowSwift",
-    component: () => import("@v/show/Swift.vue")
-  },
+
+
   {
     path: "/manage",
     name: "Manage",

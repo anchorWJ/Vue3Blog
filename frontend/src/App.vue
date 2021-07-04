@@ -4,7 +4,9 @@
       <titleHeader :config="appViewConfig" />
     </div>
     <div class="z-10">
+      <transition name="fade" mode="out-in" appear>
       <router-view />
+      </transition>
     </div>
     <div>
       <titleFooter />
@@ -30,3 +32,15 @@ export default {
   },
 };
 </script>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

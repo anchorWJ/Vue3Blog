@@ -1,5 +1,5 @@
 const Joi = require("joi");
-const typeList = ["Swift", "Flutter", "Python", "Go", "AWS", "Architecture", "Others"];
+const typeList = ["Vue", "Swift", "Flutter", "Python", "Go", "AWS", "Architecture", "Others"];
 
 exports.schema = {
 
@@ -15,9 +15,9 @@ exports.schema = {
       .error(Error("query-page must be number, and min must be 1")),
     type: Joi.array()
       .empty("")
-      .items(Joi.valid("Swift", "AWS", "Vue", "Kotlin", "Python", "Others"))
+      .items(Joi.valid(...typeList))
       .single()   // string to array
-      .default(["Swift", "AWS", "Vue", "Kotlin", "Python", "Others"])
+      .default(["Vue", "Swift", "Flutter", "Python", "Go", "AWS", "Architecture", "Others"])
       .error(Error("query-type must be string, and must belong Swift, AWS, Vue, Kotlin, Python, Others"))
   }),
 
@@ -36,8 +36,12 @@ exports.schema = {
       .empty("")
       .default("")
       .error(Error("body-synopsis must be string")),
+    cardImages: Joi.string()
+      .empty("")
+      .default("")
+      .error(Error("body-cardImages must be url string")),
     type: Joi.string()
-      .valid("Swift", "AWS", "Vue", "Kotlin", "Python", "Others")
+      .valid(...typeList)
       .required()
       .error(Error("body-type must belong Swift, Flutter, Go, AWS, Vue, Architecture, Python, Others")),
     content: Joi.string()
@@ -57,10 +61,14 @@ exports.schema = {
       .empty("")
       .default("")
       .error(Error("body-synopsis must be string")),
+    cardImages: Joi.string()
+      .empty("")
+      .default("")
+      .error(Error("body-cardImages must be url string")),
     type: Joi.string()
       .empty("")
-      .valid("Swift", "AWS", "Vue", "Kotlin", "Python", "Others")
-      .error(Error("body-type must belong Swift, AWS, Vue, Kotlin, Python, Others")),
+      .valid(...typeList)
+      .error(Error("body-type must belong Swift, Flutter, Go, AWS, Vue, Architecture, Python, Others")),
     content: Joi.string()
       .empty("")
       .default("")
