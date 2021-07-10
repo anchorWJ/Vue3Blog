@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@ant-design-vue/use@^0.0.1-0":
-  "integrity" "sha512-X+ESJt+e95sRwlSkpzETjc0opE5l34tCjMEm92JkoM4BVl6YxG9IgyX1dBy0W2jF74SSCOiCc7GdIlsPFQvE/g=="
-  "resolved" "https://registry.npmjs.org/@ant-design-vue/use/-/use-0.0.1-alpha.9.tgz"
-  "version" "0.0.1-alpha.9"
+"@ant-design-vue/use@*", "@ant-design-vue/use@^0.0.1-0":
+  "integrity" "sha512-og9a6Glx3X/8WHPasTTNRBPg+e5Jsp6J7gKH2dQ1/HDvMTYP/BCy08HrUfvTk9crkGc0kbxDmY+7M8KEtC80zw=="
+  "resolved" "https://registry.npmjs.org/@ant-design-vue/use/-/use-0.0.1-alpha.10.tgz"
+  "version" "0.0.1-alpha.10"
   dependencies:
     "async-validator" "^3.4.0"
     "lodash-es" "^4.17.15"

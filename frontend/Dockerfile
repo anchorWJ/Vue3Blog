@@ -1,9 +1,8 @@
-FROM node:latest as builder
+FROM node:latest
 
+COPY ./ /app
 WORKDIR /app
-
-COPY package.json .
-
+ENV DEBCONF_NOWARNINGS yes
 RUN apt-get update -y && \
     apt-get upgrade -y && \
     apt-get install -y \
@@ -12,15 +11,3 @@ RUN apt-get update -y && \
         nmap \
         git \
         nano \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN npm install
-
-COPY ./ ./
-
-RUN npm run build
-
-
-FROM nginx
-EXPOSE 80
-COPY --from=builder /app/dist /usr/share/nginx/html
