@@ -1,5 +1,5 @@
 <template>
-  <div class=" h-96 mt-40 mb-16 mr-16 ml-16 bg-gray-300">
+  <div class=" h-96 mt-60 mr-16 ml-16">
     <div class="pt-20"><a-empty /></div>
   </div>
 </template>

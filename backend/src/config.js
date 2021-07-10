@@ -7,12 +7,19 @@ config.PORT = 3000
  */
 config.MODEL = {
   dialect: "mysql",
+  port: 3306,
   database: "vue-blog",
   username: "root",
   password: "0924",
-  host: "mysql",
-  timezone: "+09:00",
-  logging: false
+  host: "vue-blog.cisb4qsld0g5.ap-northeast-1.rds.amazonaws.com",
+  dialectOptions: {
+    ssl: "Amazon RDS"
+  },
+  pool: {
+    max: 100,
+    min: 0,
+    acquire: 100*1000,
+  }
 }
 
 config.SECRET_KEY = {

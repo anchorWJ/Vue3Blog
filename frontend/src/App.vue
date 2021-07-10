@@ -4,9 +4,11 @@
       <titleHeader :config="appViewConfig" />
     </div>
     <div class="z-10">
-      <transition name="fade" mode="out-in" appear>
-      <router-view />
-      </transition>
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in" appear>
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </div>
     <div>
       <titleFooter />
