@@ -17,8 +17,9 @@ sudo docker-compose up -d --build
 **http://localhost:8080/** in your browser and make sure 8080 port not be using.
 
 ## Preview
-![](https://github.com/anchorWJ/Vue3Blog/blob/master/preview-1.png | width=50)
-
+<img src="https://github.com/anchorWJ/Vue3Blog/blob/master/preview-1.png" width=40%>  　
+<img src="https://github.com/anchorWJ/Vue3Blog/blob/master/preview-2.png" width=40%>  　
+<img src="https://github.com/anchorWJ/Vue3Blog/blob/master/preview-3.png" width=40%>  　　
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
