@@ -2,7 +2,7 @@
 # ・3 tier architecture blog
 
 ・Frontend is using vue3 + webpack + antdesign + tailwind css  
-・Backend is using koa  
+・Middleware is using koa  
 ・Datebase is using sequelize for mysql
 
 ## Installation
