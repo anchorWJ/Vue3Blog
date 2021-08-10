@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col h-screen justify-between">
+  <div class="flex flex-col h-screen w-screen justify-between">
     <div class="fixed z-20 min-w-full">
       <titleHeader :config="appViewConfig" />
     </div>
-    <div class="z-10">
+    <div class="mt-36 z-10">
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in" appear>
           <component :is="Component" />
@@ -38,7 +38,7 @@ export default {
 <style>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 2s ease;
+  transition: opacity 0.5s ease;
 }
 
 .fade-enter-from,

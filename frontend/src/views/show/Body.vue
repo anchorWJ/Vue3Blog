@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen grid grid-cols-2 gap-24 mt-20 mb-24 w-2/3 m-auto">
+  <div class="min-h-screen grid mb-12 m-auto md:w-3/5 md:grid-cols-1 lg:grid-cols-2 lg:gap-24">
     <div>
       <b-card-container :cardRecords="homeCardLeftRecords"  @handler="handler" ></b-card-container>
     </div>
@@ -14,7 +14,6 @@ import BCardContainer from "@b/cardContainer.vue";
 import { homeCardLeftViewConfig, homeCardRightViewConfig } from "@vp/showCard/home.js";
 import http from "@u/http.js"
 import { watchEffect } from '@vue/runtime-core';
-// import { useLinkedRouteParam } from "@u/route.js"
 import { useWarningNotice } from "@u/notification.js"
 import { useRoutePathToPage } from "@u/router.js"
 

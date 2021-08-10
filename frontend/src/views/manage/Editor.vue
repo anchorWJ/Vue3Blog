@@ -34,19 +34,6 @@
           </a-input>
         </a-form-item>
 
-        <!-- <a-upload
-          v-model:file-list="formState.cardImage"
-          :beforeUpload="beforeUpload"
-          :action="uploadImage"
-          :multiple="false"
-          accept=".png, .jpg, .gif"
-        >
-          <a-button>
-            <upload-outlined></upload-outlined>
-            Click to Upload
-          </a-button>
-        </a-upload> -->
-
         <a-form-item class="mt-6">
           <a-radio-group v-model:value="formState.type">
             <a-radio value="Vue">Vue</a-radio>
@@ -72,6 +59,7 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/androidstudio.css';
 import { EditOutlined, FontSizeOutlined, FileImageOutlined } from '@ant-design/icons-vue';
 import { useMessageNotice, useSuccessNotice, useErrorNotice } from "@u/notification.js"
+import { useRoutePathToPage } from "@u/router.js"
 import { useDebounce } from "@u/noticeDebounce.js"
 import { useLocalStorage } from "@u/localStorage.js"
 import http, { lazyRequest } from "@u/http.js"
@@ -103,11 +91,15 @@ export default defineComponent({
                 console.log('change');
             },
         });
+
+        // editor setting
         instance.config.height = 1000;
+        instance.highlight = hljs;
         instance.config.languageType = [
           'JavaScript', 'JSON', 'TypeScript', 'Html', 'CSS', 'Go', 'Kotlin', 'Swift', 'Python', 'Markdown', 'Flutter'
         ];
-        instance.highlight = hljs;
+
+
         instance.create();
         instance.txt.html(draft.value)
         instance.config.onchange = useDebounce((newHtml) => {
@@ -130,39 +122,11 @@ export default defineComponent({
       type: ''
     })
 
-    // // upload image
-    // const beforeUpload = file => {
-    //   if (file.size / 1024 / 1024 > 4) {
-    //     useErrorNotice({
-    //       message: `${info.file.name} can not bogger than 4M`,
-    //       duration: 3
-    //     })
-    //     return beforeUpload
-    //   }
-      // if (info.file.status !== 'uploading') {
-      //   console.log(info.file, info.fileList);
-      // }
-
-      // if (info.file.status === 'done') {
-      //   useSuccessNotice({
-      //     message: `${info.file.name} file uploaded successfully`,
-      //     duration: 2
-      //   })
-      // } else if (info.file.status === 'error') {
-      //   useErrorNotice({
-      //     message: `${info.file.name} file upload failed.`,
-      //     duration: 2
-      //   })
-      // }
-    // };
-
-    
     // post article
     let submit = async (record) => {
       try {
         const request = http.post("/articles", {
           ...record,
-          // cardImage: ,
           content: instance.txt.html()
         })
 
@@ -170,6 +134,9 @@ export default defineComponent({
         useSuccessNotice({
           message: "Succesed!"
         })
+
+        const toArticle = useRoutePathToPage("/manage/articles/1")
+        toArticle()
       } catch (error) {
         useErrorNotice({
           message: "Failed!",
@@ -211,6 +178,9 @@ export default defineComponent({
           useSuccessNotice({
             message: "Update Success!"
           })
+
+          const toArticle = useRoutePathToPage("/manage/articles/1")
+          toArticle()
         } catch (error) {
           useErrorNotice({
             message: "Update Failed!",
@@ -233,8 +203,7 @@ export default defineComponent({
         setVisible,
         formState,
         submit,
-        submitButtonMessage,
-        // handleChange,
+        submitButtonMessage
     };
   },
 });

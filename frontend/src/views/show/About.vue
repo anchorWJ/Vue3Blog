@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-2 w-1/2 m-auto mt-64 mb-24">
+  <div class="grid grid-cols-2 w-3/5 m-auto mt-64 mb-24">
     <div class="max-w-lg flex flex-col">
       <div>
         <img :src="image" class="rounded-3xl" />

@@ -1,8 +1,0 @@
-[2021-05-22T02:49:15.902] [ERROR] http - ::ffff:172.21.0.1 - - "GET / HTTP/1.1" 404 62 "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
-[2021-05-22T02:49:22.186] [ERROR] http - ::ffff:172.21.0.1 - - "GET / HTTP/1.1" 404 62 "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
-[2021-05-22T02:49:40.062] [ERROR] http - ::ffff:172.21.0.1 - - "GET /users/afadfad HTTP/1.1" 404 62 "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
-[2021-05-22T02:49:45.126] [ERROR] http - ::ffff:172.21.0.1 - - "GET /users HTTP/1.1" 404 62 "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
-[2021-05-22T02:49:52.870] [INFO] http - ::ffff:172.21.0.1 - - "GET /articles HTTP/1.1" 200 11 "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
-[2021-05-22T02:51:19.502] [ERROR] http - ::ffff:172.21.0.1 - - "GET / HTTP/1.1" 404 62 "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
-[2021-05-22T07:35:40.934] [INFO] http - ::ffff:172.21.0.1 - - "GET /articles HTTP/1.1" 200 11 "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
-[2021-05-22T08:01:43.389] [INFO] http - ::ffff:172.22.0.1 - - "GET /articles HTTP/1.1" 200 11 "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"

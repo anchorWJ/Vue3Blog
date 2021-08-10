@@ -2,7 +2,7 @@ const hardPlugin = require("hard-source-webpack-plugin")
 const { resolve } = require("path")
 
 module.exports = {
-    publicPath: "./",
+    publicPath: "/",
     productionSourceMap: false,
     devServer: {
       proxy: {
@@ -31,6 +31,9 @@ module.exports = {
                 "@p": resolve(__dirname, "src/plugins"),
                 "@vp": resolve(__dirname, "src/view-provider"),
             }
+        },
+        externals: {
+          moment: "moment"
         }
     }
 }
