@@ -1,10 +1,11 @@
 <template>
-  <div class="flex flex-col w-4/5 m-auto rounded-3xl ring-gray-800 shadow-2xl cursor-pointer transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-90" v-for="record of cardRecords" :key="record.id" @click="handler(record.id)">
-    <div class="px-8 py-8">
-      <div class="max-w-lg">
-        <img :src="record.cardImages" class="rounded-3xl" />
+  <!-- <div class="flex flex-col w-full m-auto rounded-3xl bg-gray-600  ring-gray-800 shadow-2xl cursor-pointer transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-90" v-for="record of cardRecords" :key="record.id" @click="handler(record.id)"> -->
+  <div class="flex flex-col w-full m-auto rounded-3xl bg-gray-600  ring-gray-800 shadow-2xl cursor-pointer transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-90" v-for="record of cardRecords" :key="record.id" @click="handler(record.id)">  
+    <div class="grid grid-rows- grid-flow-col gap-4">
+      <div class="row-span-2 col-span-2 m-auto bg-green-300">
+        <img :src="record.cardImages" class="rounded-l-3xl " />
       </div>
-      <div class="max-w-lg flex-col mt-6">
+      <div class="max-w-lg row-span-2 col-span-3 mt-6">
         <div class="text-2xl font-medium">
           {{ record.title }}
         </div>

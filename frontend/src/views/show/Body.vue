@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen grid mb-12 m-auto md:w-3/5 md:grid-cols-1 lg:grid-cols-2 lg:gap-24">
+  <div class="min-h-screen bg-gray-400 grid mb-12 m-auto md:w-4/5 md:grid-cols-1 lg:grid-cols-2">
     <div>
       <b-card-container :cardRecords="homeCardLeftRecords"  @handler="handler" ></b-card-container>
     </div>
