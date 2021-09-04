@@ -14,6 +14,7 @@ services:
       - mysqldata:/var/lib/mysql
    networks:
      - default
+
  app:
    build: 
       context: ./
@@ -29,6 +30,7 @@ services:
      - default
    depends_on:
      - mysql
+
  vue:
    build: 
       context: ./
@@ -39,6 +41,21 @@ services:
      - ./frontend:/client
    working_dir: /client
    command: npm run serve
+   networks:
+     - default
+   depends_on:
+     - app
+
+ react:
+   build: 
+      context: ./
+      dockerfile: ./client/Dockerfile
+   ports:
+     - '9090:9090'
+   volumes:
+     - ./client:/app
+   working_dir: /app
+   command: npm run dev
    networks:
      - default
    depends_on:
